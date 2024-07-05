@@ -1,11 +1,13 @@
 # BamSurvival
+플랫폼 : 모바일
+장르 : 뱀서라이크
 
 ## Player
 + 움직임
   + 1. Snake는 항상 앞으로 감 
     + Translate(Vector3.forward)
   + 2. 플레이어는 A,D를 사용해서 좌우로만 움직임을 조정 
-    + Input.GetAxis("Horizontal") 사용
+    + 조이스틱 움직임 ? 한손조작
 + 움직임 최적화
   + PlayerManager.cs
     + FixedUpdate() 사용
