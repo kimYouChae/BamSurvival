@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using Slider = UnityEngine.UI.Slider;
 
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> _markerPrefabs;   // 프리팹 저장
     [SerializeField] List<Marker> _markers;             // Marker 클래스 리스트에 저장
+    [SerializeField] List<Slider> _markerHpBar;         // Marker의 hp바 
 
     [SerializeField] private float _speed;                               // 머리 속도
     [SerializeField] private Vector2 _joystickVec;                       // 조이스틱의 vec 
@@ -23,15 +23,18 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        _bodyCount = 0;
-        _joystickVec = Vector2.up;
+
     }
 
     void Start()
     {
         _speed = 3f;
+        _bodyCount = 0;
+        _joystickVec = Vector2.up;
         _distanceBetween = 0.1f;
         _isReadToMove = false;
+
+        _markerHpBar = new List<Slider>();
 
         StartCoroutine(F_CreateSnake());
     }
@@ -57,13 +60,16 @@ public class PlayerManager : MonoBehaviour
         for (int i = 0; i < _markerPrefabs.Count; i++)
         {
             // 머리, 몸통 생성 
-            GameObject _headInstance = Instantiate(_markerPrefabs[i], Vector3.zero, Quaternion.identity);
+            GameObject _segments = Instantiate(_markerPrefabs[i], Vector3.zero, Quaternion.identity);
 
             // 리스트에 추가
-            _markers.Add(_headInstance.GetComponent<Marker>());
+            _markers.Add(_segments.GetComponent<Marker>());
 
             // 몸통갯수 ++
             _bodyCount++;
+
+            // Hp바 초기화ㅣ
+            F_ChangeHpValue(_segments.GetComponent<Marker>(), 1f);
 
             // 일정시간 기다리기 
             yield return new WaitForSeconds(_distanceBetween);
@@ -128,5 +134,12 @@ public class PlayerManager : MonoBehaviour
 
         }
 
+    }
+
+    // float만큼 hp바의 value 바꾸기 
+    private void F_ChangeHpValue(Marker v_marker , float v_value) 
+    {
+        // hpbar(Slider)의 value를 수정 
+        v_marker.markerHpBar.value = v_value;
     }
 }

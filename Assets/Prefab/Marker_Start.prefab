@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _markerTransform: []
   _markerRotation: []
+  _markerHpBar: {fileID: 1044780926483979274}
 --- !u!1001 &2221094469739411255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,6 +206,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 003b5737f03914a48bd2b2c0b75b505b, type: 3}
+--- !u!114 &1044780926483979274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1201659627772095293, guid: 003b5737f03914a48bd2b2c0b75b505b, type: 3}
+  m_PrefabInstance: {fileID: 2221094469739411255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8711427283170575272 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7365599061948347551, guid: 003b5737f03914a48bd2b2c0b75b505b, type: 3}

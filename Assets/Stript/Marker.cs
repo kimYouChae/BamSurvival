@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Marker : MonoBehaviour
 {
@@ -8,9 +9,13 @@ public class Marker : MonoBehaviour
     private List<Vector3> _markerTransform;
     [SerializeField]
     private List<Quaternion> _markerRotation;
+    [SerializeField]
+    private Slider _markerHpBar;
 
     public List<Vector3> markerTransform => _markerTransform;
     public List<Quaternion> markerRotation => _markerRotation;
+
+    public Slider markerHpBar => _markerHpBar;
 
     private void Awake()
     {
