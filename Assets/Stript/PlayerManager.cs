@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -57,8 +58,11 @@ public class PlayerManager : MonoBehaviour
         // 앞으로 직진
         if (_markers.Count > 0) 
         {
+            // 조이스틱 vector 수정
+            Vector2 _joyVec = new Vector2(_joystickVec.x , _joystickVec.y > 0 ? 1f : -1f );
+
             _markers[0].gameObject.transform.Translate
-                (_markers[0].transform.up * _speed * Time.deltaTime);
+                (_joyVec * _speed * Time.deltaTime);
 
         }
     }
