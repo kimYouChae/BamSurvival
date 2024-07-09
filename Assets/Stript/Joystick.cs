@@ -35,7 +35,6 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     // 드래그 시작
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("드래그 시작");
         F_ControlJoystickLevel(eventData);
 
          _isInput = true;
@@ -44,7 +43,6 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     // 드래그
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("드래그 중 ");
         F_ControlJoystickLevel(eventData);
 
     }
@@ -52,7 +50,6 @@ public class Joystick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     // 드래그 끝
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("드래그 끝");
 
         // 드래그 때면 level은 0,0,0으로
         _lever.anchoredPosition = Vector2.zero;
