@@ -81,8 +81,6 @@ public class PlayerManager : MonoBehaviour
         // 움직일 준비 완 
         _isReadToMove = true;
 
-        Debug.Log("코루틴끝날예정 ");
-
     }
 
     // 머리 움직임 컨트롤
@@ -124,7 +122,8 @@ public class PlayerManager : MonoBehaviour
                 _markers[i].gameObject.transform.Translate(_frontMarker.markerTransform[0] -_markers[i].transform.position );
 
                 // 내 앞의 marker의 회전값으로 look
-                _markers[i].transform.rotation = Quaternion.LookRotation(_frontMarker.markerRotation[0].eulerAngles);
+                if(_frontMarker.markerRotation[0].eulerAngles != Vector3.zero) 
+                    _markers[i].transform.rotation = Quaternion.LookRotation(_frontMarker.markerRotation[0].eulerAngles);
 
                 _frontMarker.markerTransform.RemoveAt(0);
                 _frontMarker.markerRotation.RemoveAt(0);
