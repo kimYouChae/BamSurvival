@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Marker : MonoBehaviour
 {
     [SerializeField]
     private List<Vector3> _markerTransform;
     [SerializeField]
-    private List<Quaternion> _merkerRotation;
+    private List<Quaternion> _markerRotation;
 
     public List<Vector3> markerTransform => _markerTransform;
-    public List<Quaternion> markerRotation => _merkerRotation;
+    public List<Quaternion> markerRotation => _markerRotation;
 
     private void Awake()
     {
         // marker »ý¼º 
         _markerTransform = new List<Vector3>();
-        _merkerRotation = new List<Quaternion>();
+        _markerRotation = new List<Quaternion>();
     }
+
+    private void Start()
+    {
+        _markerTransform.Add(gameObject.transform.position);
+        _markerRotation.Add(gameObject.transform.rotation);
+    }
+
 
     private void FixedUpdate()
     {
