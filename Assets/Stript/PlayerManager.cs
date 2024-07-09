@@ -70,6 +70,9 @@ public class PlayerManager : MonoBehaviour
 
             // Hp바 초기화ㅣ
             F_ChangeHpValue(_segments.GetComponent<Marker>(), 1f);
+            
+            // 리스트에 추가 
+            _markerHpBar.Add(_segments.GetComponent<Marker>().markerHpBar);
 
             // 일정시간 기다리기 
             yield return new WaitForSeconds(_distanceBetween);
@@ -93,6 +96,7 @@ public class PlayerManager : MonoBehaviour
             // y는 조이스틱이 위를 향할 때 (0보다 클 때) ,  아래를 향할 때 (0보다 작을 때) 로 나뉨
             Vector2 _joyVec = new Vector2(_joystickVec.x , _joystickVec.y > 0 ? 1f : -1f );
 
+            // head 움직이기 
             _markers[0].gameObject.transform.Translate
                 (_joyVec * _speed * Time.deltaTime);
 
