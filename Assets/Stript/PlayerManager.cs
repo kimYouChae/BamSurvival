@@ -9,16 +9,22 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] List<Marker> _markers;             // Marker 클래스 리스트에 저장
     [SerializeField] List<Slider> _markerHpBar;         // Marker의 hp바 
 
+    [Header("===snake State===")]
     [SerializeField] private float _speed;                               // 머리 속도
     [SerializeField] private Vector2 _joystickVec;                       // 조이스틱의 vec 
     [SerializeField] private int _bodyCount;                             // 현재 생성한 몸통의 개수 (머리포함)
     [SerializeField] private float _distanceBetween;                     // 몸통사이 생성 딜레이
     [SerializeField] private bool _isReadToMove;                         // 생성이 다 되면 , 움직일 준비가 된
+    [SerializeField] private LayerMask _markerLayer;                        // marker의 layer int 
+
     // 싱글톤
     public static PlayerManager instance;
 
     // 프로퍼티
     public Vector2 joystickVec { get => _joystickVec; set { _joystickVec = value; } }
+    public LayerMask markerLayer => _markerLayer;
+    public Transform headMarkerTransfrom => _markers[0].transform;
+
 
     private void Awake()
     {
@@ -33,6 +39,7 @@ public class PlayerManager : MonoBehaviour
         _joystickVec = Vector2.up;
         _distanceBetween = 0.1f;
         _isReadToMove = false;
+        _markerLayer = LayerMask.GetMask("Marker");
 
         _markerHpBar = new List<Slider>();
 
