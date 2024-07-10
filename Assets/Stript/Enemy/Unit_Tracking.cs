@@ -16,6 +16,7 @@ public class Unit_Tracking : FSM
     public override void FSM_Enter()
     {
         Debug.Log("Tracking Enter");
+        _unit._curr_UNITS_TATE = UNIT_STATE.Tracking;
     }   
 
     public override void FSM_Excute()
@@ -23,7 +24,7 @@ public class Unit_Tracking : FSM
         // Die 전이 
         if(_unit.F_ChekchUnitHp())
         {
-            _unit.F_ChangeState(UNIT_STATE.Die);
+            //_unit.F_ChangeState(UNIT_STATE.Die);
         }
 
         // 1. 플레이어 추적
@@ -34,20 +35,19 @@ public class Unit_Tracking : FSM
         // 2. 감지범위에 marker 가 검출되면
         
         Collider2D[] _coll = Physics2D.OverlapCircleAll
-            (_unit.gameObject.transform.position, _unit.searchRadious , PlayerManager.instance.markerLayerInt);
+            (_unit.gameObject.transform.position, _unit.searchRadious , PlayerManager.instance.markerLayer );
 
-        Debug.Log(_coll.Length);
-        /*
         if ( _coll.Length >= 0 )
         {
             // 상태전이
-            //_unit.F_ChangeState( UNIT_STATE.Attack );
+            // _unit.F_ChangeState( UNIT_STATE.Attack );
         }
-        */
+        
     }
 
     public override void FSM_Exit()
     {
         Debug.Log("Tracking Exit");
+        _unit._pre_UNITS_TATE = UNIT_STATE.Tracking;
     }
 }

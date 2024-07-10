@@ -20,7 +20,7 @@ public class Bug_Basic :  Unit
     private void Update()
     {
         // FSM excute 
-        F_CurrStateExcute(); 
+        //F_CurrStateExcute(); 
     }
 
     protected override void F_InitUnitUnitState()

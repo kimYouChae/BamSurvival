@@ -15,14 +15,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private int _bodyCount;                             // 현재 생성한 몸통의 개수 (머리포함)
     [SerializeField] private float _distanceBetween;                     // 몸통사이 생성 딜레이
     [SerializeField] private bool _isReadToMove;                         // 생성이 다 되면 , 움직일 준비가 된
-    [SerializeField] private int _markerLayerInt;                        // marker의 layer int 
+    [SerializeField] private LayerMask _markerLayer;                        // marker의 layer int 
 
     // 싱글톤
     public static PlayerManager instance;
 
     // 프로퍼티
     public Vector2 joystickVec { get => _joystickVec; set { _joystickVec = value; } }
-    public int markerLayerInt => _markerLayerInt;
+    public LayerMask markerLayer => _markerLayer;
     public Transform headMarkerTransfrom => _markers[0].transform;
 
 
@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour
         _joystickVec = Vector2.up;
         _distanceBetween = 0.1f;
         _isReadToMove = false;
-        _markerLayerInt = LayerMask.NameToLayer("Marker");
+        _markerLayer = LayerMask.GetMask("Marker");
 
         _markerHpBar = new List<Slider>();
 

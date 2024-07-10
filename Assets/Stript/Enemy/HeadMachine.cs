@@ -40,20 +40,24 @@ public class HeadMachine
     // 상태 변경
     public void HM_ChangeState(FSM v_ChageState) 
     {
+        if (_currState == v_ChageState)
+            return;
+
+        // 이전상태 = 현재상태 
+        _preState = _currState;
+
         if (_currState != null)
         {
             // 바뀌기 전 end 동작 실행
             _currState.FSM_Excute();
-
-            // 이전상태 = 현재상태 
-            _preState = _currState;
-
-            // 현재상태 = 새로들어온 상태
-            _currState = v_ChageState;
-
-            // 새로들어온 상태의 enter 동작 실행
-            _currState.FSM_Enter();
         }
+
+        // 현재상태 = 새로들어온 상태
+        _currState = v_ChageState;
+
+        // 새로들어온 상태의 enter 동작 실행
+        _currState.FSM_Enter();
+        
     }
    
 }

@@ -32,7 +32,8 @@ public class Unit : MonoBehaviour
     public HeadMachine _UnitHeadMachine;
     public FSM[] _UnitStateArr;
     [SerializeField] private FSM _currState;          // 현재 상태 
-    [SerializeField] private FSM _preState;           // 이전 상태 
+    [SerializeField] public UNIT_STATE _curr_UNITS_TATE;           // 현재 enum
+    [SerializeField] public UNIT_STATE _pre_UNITS_TATE;           // 이전 enum 
 
     // 프로퍼티
     public float unitSpeed      => _unitSpeed;
