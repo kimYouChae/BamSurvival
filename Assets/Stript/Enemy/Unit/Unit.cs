@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public enum UNIT_STATE 
@@ -25,26 +26,26 @@ public class Unit : MonoBehaviour
     [SerializeField] protected int   _unitHp;           // hp
     [SerializeField] protected float _unitSpeed;        // speed 
     [SerializeField] protected float _unitAttackTime;   // 공격 지속시간
-    [SerializeField] protected bool  _unitFinishedAttak; // 공격 끝                                                        
+    [SerializeField] protected float _unitTimeStamp;   // 공격 시 0으로 초기화                                                 
     [SerializeField] protected float _searchRadious;       // 플레이어 감지 범위 
 
     [Header("===FSM===")]
     public HeadMachine _UnitHeadMachine;
     public FSM[] _UnitStateArr;
-    [SerializeField] private FSM _currState;          // 현재 상태 
     [SerializeField] public UNIT_STATE _curr_UNITS_TATE;           // 현재 enum
     [SerializeField] public UNIT_STATE _pre_UNITS_TATE;           // 이전 enum 
 
     // 프로퍼티
     public float unitSpeed      => _unitSpeed;
     public float searchRadious  => _searchRadious;
+    public float unitTimeStamp { get => _unitTimeStamp; set{ _unitTimeStamp = value;} }
 
     // 상태 초기화
     // ##TODO CVS로 데이터 관리 시 수정필요함
     protected virtual void F_InitUnitUnitState() { }
 
     // attack 동작 재정의
-    protected virtual void F_UnitAttatk() { }
+    public virtual void F_UnitAttatk() { }
 
     // FSM 세팅 
     protected void F_InitUnitState( Unit v_standard ) 
@@ -61,11 +62,10 @@ public class Unit : MonoBehaviour
         _UnitStateArr[(int)UNIT_STATE.Die]          = new Unit_Die(v_standard);
 
         // 현재상태 지정 
-        _currState = _UnitStateArr[(int)UNIT_STATE.Tracking];
+        _curr_UNITS_TATE = UNIT_STATE.Tracking;
 
         // Machine에 상태 넣기 
-        _UnitHeadMachine.HM_SetState(_currState);
-
+        _UnitHeadMachine.HM_SetState(_UnitStateArr[(int)_curr_UNITS_TATE]);
     }
 
     // 현재 상태 진입 ( 1회 , Start에서 실행 )
@@ -86,17 +86,38 @@ public class Unit : MonoBehaviour
     {
         // UNIT_STATE에 맞는 FSM으로 상태변화 
         // head Machine의 Change 
+
         _UnitHeadMachine.HM_ChangeState(_UnitStateArr[(int)v_state]);
     }
 
-    // Unit hp 검사 
-    public bool F_ChekchUnitHp() 
+    // Unit hp 검사
+    public void F_ChekchUnitHp() 
     {
         // hp가 0이하면 true 
         if (_unitHp <= 0)
-            return true;
+        {
+            // Die로 상태변화
+            F_ChangeState(UNIT_STATE.Die);
+        }
+    }
 
-        return false;
+    public void F_UniTracking(Unit v_unit) 
+    {
+        // 1. 플레이어 추적
+        v_unit.gameObject.transform.position
+            = Vector3.MoveTowards(v_unit.gameObject.transform.position,
+                PlayerManager.instance.headMarkerTransfrom.position, v_unit.unitSpeed * Time.deltaTime);
+
+        // 2. 감지범위에 marker 가 검출되면
+        Collider2D[] _coll = Physics2D.OverlapCircleAll
+            (v_unit.gameObject.transform.position, v_unit.searchRadious, PlayerManager.instance.markerLayer);
+
+        if (_coll.Length > 0)
+        {
+            // 상태전이
+            v_unit.F_ChangeState( UNIT_STATE.Attack );
+        }
+       
     }
 
 }

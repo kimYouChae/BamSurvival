@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class HeadMachine
 {
     // machine이 돌아갈 주체
-    private Unit _unit;
+    [SerializeField] private Unit _unit;
 
-    private FSM _currState;     // 현재 상태
-    private FSM _preState;     // 이전 상태  
+    [SerializeField] private FSM _currState;     // 현재 상태
+    [SerializeField] private FSM _preState;     // 이전 상태  
 
     // 생성자
     public HeadMachine(Unit v_unit) 
@@ -19,6 +20,7 @@ public class HeadMachine
     // 현재 상태 세팅
     public void HM_SetState(FSM v_fsm) 
     {
+        // fsm 세팅할 때 넣음 
         this._currState = v_fsm;
     }
 
@@ -49,7 +51,7 @@ public class HeadMachine
         if (_currState != null)
         {
             // 바뀌기 전 end 동작 실행
-            _currState.FSM_Excute();
+            _currState.FSM_Exit();
         }
 
         // 현재상태 = 새로들어온 상태
@@ -57,7 +59,6 @@ public class HeadMachine
 
         // 새로들어온 상태의 enter 동작 실행
         _currState.FSM_Enter();
-        
     }
    
 }
