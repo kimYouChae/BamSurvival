@@ -5,7 +5,7 @@ using UnityEngine.Apple.ReplayKit;
 
 public class Bug_Basic :  Unit 
 {
-    private void Start()
+    private void Awake()
     {
         // 스탯 초기화 
         F_InitUnitUnitState();
@@ -20,7 +20,7 @@ public class Bug_Basic :  Unit
     private void Update()
     {
         // FSM excute 
-        //F_CurrStateExcute(); 
+        F_CurrStateExcute(); 
     }
 
     protected override void F_InitUnitUnitState()
@@ -29,28 +29,21 @@ public class Bug_Basic :  Unit
         this._unitSpeed = 3f;
         this._unitAttackTime = 1f;
         this._searchRadious = 2f;
+        this._unitTimeStamp = 0;
     }
 
-    protected override void F_UnitAttatk()
+    public override void F_UnitAttatk()
     {
-        Debug.Log(this.gameObject.name + " 의 attack 함수 실행 ");
+        _unitTimeStamp += Time.deltaTime;
 
-        // 공격 안끝남 
-        _unitFinishedAttak = false;
-
-        float _temp = 0;
-        _temp += Time.deltaTime;
-
-        if(_temp < _unitAttackTime)
+        if(_unitTimeStamp < _unitAttackTime)
         {
-            Debug.Log(this.gameObject.name +"가 공격중 !! ");
+            // ##TODO : 각 공격동작 추가 
         }
-        else if(_temp >= _unitAttackTime )
+        else if(_unitTimeStamp >= _unitAttackTime )
         {
-            Debug.Log(this.gameObject.name + " 공격 끝 ");
-
-            // 공격 끝남
-            _unitFinishedAttak = true;
+            // tracking으로 상태변화
+            F_ChangeState(UNIT_STATE.Tracking);
         }
     }
 
