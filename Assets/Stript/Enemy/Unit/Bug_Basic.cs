@@ -31,7 +31,7 @@ public class Bug_Basic :  Unit
     {
         this._unitHp = 10;
         this._unitSpeed = 3f;
-        this._unitAttackTime = 1f;
+        this._unitAttackTime = 10f;
         this._searchRadious = 2f;
         this._unitTimeStamp = 0;
     }

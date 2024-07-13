@@ -154,6 +154,38 @@ public class Unit : MonoBehaviour
 
     }
 
+
+    public void F_DangerLineBounce(Unit v_unit)
+    {
+        Transform _unitTrs = v_unit.gameObject.transform;
+
+        // 라인생성 위치 
+        Vector3 _linePosition = new Vector3(_unitTrs.position.x, _unitTrs.position.y, -0.1f);
+        // 라인 방향 (방향벡터)
+        Vector3 _lineDir = PlayerManager.instance.headMarkerTransfrom.position 
+            - _unitTrs.position;
+
+        LineRenderer _bounceLineInstance = Instantiate(_dangerBounceLine , _unitTrs.position , Quaternion.identity);
+
+        _bounceLineInstance.positionCount = 1;                    // 연결할 점의 갯수 ?
+        _bounceLineInstance.SetPosition(0, _unitTrs.position);    // 인덱스 0번에 있는 위치값 세팅   
+
+        // N번 bounce
+        for (int i = 1; i < 4; i++)
+        {
+            // Raycast
+            RaycastHit2D _hit
+                = Physics2D.Raycast(_linePosition, _lineDir * 100, 100f, _hitWallLayerMask);
+
+            _bounceLineInstance.positionCount++;
+            _bounceLineInstance.SetPosition(i, _hit.point);
+
+            // 시작 위치 수정 
+            _linePosition = _hit.point;
+            // 라인 방향 수정 : 입사각 반사각 구하기 
+            _lineDir = Vector3.Reflect( _lineDir , _hit.normal);
+        }
+    }
     public void F_DrawLine() 
     {
         Debug.DrawRay(gameObject.transform.position , transform.up * 30f , Color.red);
