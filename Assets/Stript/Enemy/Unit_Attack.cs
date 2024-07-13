@@ -16,6 +16,12 @@ public class Unit_Attack : FSM
         Debug.Log("Attack Enter");
         _unit._curr_UNITS_TATE = UNIT_STATE.Attack;
 
+        // 0. basic Line 생성  
+        //_unit.F_DangerMarkerShoot(_unit);
+        // 1. bouncec Line 생성 
+        _unit.F_DangerLineBounce(_unit);
+
+
         // 공격 시 0으로 초기화 
         _unit.unitTimeStamp = 0f;
     }

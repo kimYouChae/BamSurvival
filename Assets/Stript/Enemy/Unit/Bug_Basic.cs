@@ -15,12 +15,16 @@ public class Bug_Basic :  Unit
 
         // FSM enter 
         F_CurrStateEnter();
+
     }
 
     private void Update()
     {
         // FSM excute 
-        F_CurrStateExcute(); 
+        F_CurrStateExcute();
+
+        // Ray ±×¸®±â 
+        F_DrawLine();
     }
 
     protected override void F_InitUnitUnitState()

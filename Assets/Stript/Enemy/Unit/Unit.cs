@@ -35,10 +35,23 @@ public class Unit : MonoBehaviour
     [SerializeField] public UNIT_STATE _curr_UNITS_TATE;           // 현재 enum
     [SerializeField] public UNIT_STATE _pre_UNITS_TATE;           // 이전 enum 
 
+
+    [Header("===LayerMask===")]
+    public LayerMask _hitWallLayerMask;
+
+    [Header("===Ect Object===")]
+    [SerializeField] protected GameObject _dangerLine;
+    [SerializeField] protected LineRenderer _dangerBounceLine;
+
     // 프로퍼티
     public float unitSpeed      => _unitSpeed;
     public float searchRadious  => _searchRadious;
     public float unitTimeStamp { get => _unitTimeStamp; set{ _unitTimeStamp = value;} }
+
+    private void Start()
+    {
+        _hitWallLayerMask = LayerMask.GetMask("Wall");
+    }
 
     // 상태 초기화
     // ##TODO CVS로 데이터 관리 시 수정필요함
@@ -120,4 +133,29 @@ public class Unit : MonoBehaviour
        
     }
 
+    // ## TODO : line 생성은 player가 할 예정 (아직 몬스터느 생각없음 ) , 임시로 몬스에서 생성 
+    public void F_DangerMarkerShoot(Unit v_unit) 
+    {
+        Transform _unitTrs = v_unit.gameObject.transform;
+
+        // 라인 생성 위치 
+        Vector3 _linePosition = new Vector3(_unitTrs.position.x , _unitTrs.position.y , -0.1f);
+        
+        // Raycast
+        RaycastHit2D _hit
+            = Physics2D.Raycast(_unitTrs.position, _unitTrs.up * 30, 30f , _hitWallLayerMask);
+        if (_hit.collider != null )
+        {
+            GameObject _dangerLineClone = Instantiate(_dangerLine, _linePosition, Quaternion.identity);
+            _dangerLineClone.GetComponent<DamgerLine>().EndPosition = _hit.transform.position;
+        }
+        else
+            Debug.LogError("없음 ");
+
+    }
+
+    public void F_DrawLine() 
+    {
+        Debug.DrawRay(gameObject.transform.position , transform.up * 30f , Color.red);
+    }
 }
