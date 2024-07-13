@@ -146,7 +146,14 @@ MonoBehaviour:
   _unitHp: 0
   _unitSpeed: 0
   _unitAttackTime: 0
-  _unitFinishedAttak: 0
+  _unitTimeStamp: 0
   _searchRadious: 0
+  _UnitHeadMachine:
+    _unit: {fileID: 0}
   _curr_UNITS_TATE: 0
   _pre_UNITS_TATE: 0
+  _hitWallLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _dangerLine: {fileID: 6289417311588110565, guid: d87a494dc64138748a41d07fd41a0e26, type: 3}
+  _dangerBounceLine: {fileID: 5424403432057042274, guid: b59933b6abe81504a80583fff8047d3f, type: 3}

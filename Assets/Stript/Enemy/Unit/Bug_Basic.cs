@@ -15,19 +15,23 @@ public class Bug_Basic :  Unit
 
         // FSM enter 
         F_CurrStateEnter();
+
     }
 
     private void Update()
     {
         // FSM excute 
-        F_CurrStateExcute(); 
+        F_CurrStateExcute();
+
+        // Ray ±×¸®±â 
+        F_DrawLine();
     }
 
     protected override void F_InitUnitUnitState()
     {
         this._unitHp = 10;
         this._unitSpeed = 3f;
-        this._unitAttackTime = 1f;
+        this._unitAttackTime = 10f;
         this._searchRadious = 2f;
         this._unitTimeStamp = 0;
     }
