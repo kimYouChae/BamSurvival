@@ -39,6 +39,7 @@ public class Unit : MonoBehaviour
     [Header("===LayerMask===")]
     public LayerMask _hitWallLayerMask;
 
+    // ##TODO 수정예정
     [Header("===Ect Object===")]
     [SerializeField] protected GameObject _dangerLine;
     [SerializeField] protected LineRenderer _dangerBounceLine;
@@ -154,7 +155,7 @@ public class Unit : MonoBehaviour
 
     }
 
-
+    // ## TODO : Line 그리는게 두개까지 밖에 안 됨, 위치값 다시 봐야할 듯 
     public void F_DangerLineBounce(Unit v_unit)
     {
         Transform _unitTrs = v_unit.gameObject.transform;
@@ -186,6 +187,32 @@ public class Unit : MonoBehaviour
             _lineDir = Vector3.Reflect( _lineDir , _hit.normal);
         }
     }
+
+    public void F_StartCorutine(Unit v_unit) 
+    {
+        StopAllCoroutines();
+        StartCoroutine(F_DangerLineAndShoot(v_unit));
+    }
+
+    IEnumerator F_DangerLineAndShoot( Unit _unit ) 
+    {
+        Debug.Log("코루틴 시작");
+        // 데미지 들어가는 line renderer 그리기
+        LineRenderer _temp = Instantiate(_dangerBounceLine, _unit.gameObject.transform);
+
+        _temp.positionCount = 2;
+        _temp.SetPosition(0, _unit.transform.position);     // 첫번째 위치 : unity
+        _temp.SetPosition(1, PlayerManager.instance.headMarkerTransfrom.position);  // 두번째 위치 :  플레이어 위치  
+
+        // width 줄어드는 애니메이션 실행
+        _temp.GetComponent<Animator>().SetBool("isActive", true);
+
+        // 애니메이션이 0.6초 
+        yield return new WaitForSeconds(2.5f);
+        Destroy(_temp.gameObject);
+
+    }
+
     public void F_DrawLine() 
     {
         Debug.DrawRay(gameObject.transform.position , transform.up * 30f , Color.red);

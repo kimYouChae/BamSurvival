@@ -19,7 +19,9 @@ public class Unit_Attack : FSM
         // 0. basic Line 생성  
         //_unit.F_DangerMarkerShoot(_unit);
         // 1. bouncec Line 생성 
-        _unit.F_DangerLineBounce(_unit);
+        //_unit.F_DangerLineBounce(_unit);
+        // 2. line Renderer에 애니메이션 넣어서 실행하기 
+        _unit.F_StartCorutine(_unit);
 
         // 공격 시 0으로 초기화 
         _unit.unitTimeStamp = 0f;
