@@ -120,7 +120,7 @@ public class Unit : MonoBehaviour
         // 1. 플레이어 추적
         v_unit.gameObject.transform.position
             = Vector3.MoveTowards(v_unit.gameObject.transform.position,
-                PlayerManager.instance.headMarkerTransfrom.position, v_unit.unitSpeed * Time.deltaTime);
+                PlayerManager.instance.markerHeadTrasform.position, v_unit.unitSpeed * Time.deltaTime);
 
         // 2. 감지범위에 marker 가 검출되면
         Collider2D[] _coll = Physics2D.OverlapCircleAll
@@ -163,7 +163,7 @@ public class Unit : MonoBehaviour
         // 라인생성 위치 
         Vector3 _linePosition = new Vector3(_unitTrs.position.x, _unitTrs.position.y, -0.1f);
         // 라인 방향 (방향벡터)
-        Vector3 _lineDir = PlayerManager.instance.headMarkerTransfrom.position 
+        Vector3 _lineDir = PlayerManager.instance.markerHeadTrasform.position 
             - _unitTrs.position;
 
         LineRenderer _bounceLineInstance = Instantiate(_dangerBounceLine , _unitTrs.position , Quaternion.identity);
@@ -202,7 +202,7 @@ public class Unit : MonoBehaviour
 
         _temp.positionCount = 2;
         _temp.SetPosition(0, _unit.transform.position);     // 첫번째 위치 : unity
-        _temp.SetPosition(1, PlayerManager.instance.headMarkerTransfrom.position);  // 두번째 위치 :  플레이어 위치  
+        _temp.SetPosition(1, PlayerManager.instance.markerHeadTrasform.position);  // 두번째 위치 :  플레이어 위치  
 
         // width 줄어드는 애니메이션 실행
         _temp.GetComponent<Animator>().SetBool("isActive", true);

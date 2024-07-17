@@ -1099,7 +1099,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801653371}
-  - component: {fileID: 801653370}
   - component: {fileID: 801653372}
   m_Layer: 0
   m_Name: Manager
@@ -1108,36 +1107,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &801653370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801653369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6d220ba26583a942b017f3c5d932354, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _markerPrefabs:
-  - {fileID: 8501438079053095199, guid: 1d0ebf055b02c5f49ba9228574dd6f66, type: 3}
-  - {fileID: 8501438079053095199, guid: 1d0ebf055b02c5f49ba9228574dd6f66, type: 3}
-  - {fileID: 8501438079053095199, guid: 1d0ebf055b02c5f49ba9228574dd6f66, type: 3}
-  - {fileID: 8501438079053095199, guid: 1d0ebf055b02c5f49ba9228574dd6f66, type: 3}
-  - {fileID: 8501438079053095199, guid: 1d0ebf055b02c5f49ba9228574dd6f66, type: 3}
-  _markers:
-  - {fileID: 0}
-  - {fileID: 0}
-  _markerHpBar: []
-  _speed: 0
-  _joystickVec: {x: 0, y: 0}
-  _bodyCount: 0
-  _distanceBetween: 0
-  _isReadToMove: 0
-  _markerLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!4 &801653371
 Transform:
   m_ObjectHideFlags: 0
