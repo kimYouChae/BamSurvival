@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 680449554851370763}
   - component: {fileID: 7412964327625755521}
   - component: {fileID: 5349995655278793648}
+  - component: {fileID: 4147410890654041353}
   m_Layer: 5
   m_Name: SkilCard
   m_TagString: Untagged
@@ -212,6 +213,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4147410890654041353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919959794570861750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f744ab551c850345a05512d3f0be7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardIndex: 4
 --- !u!1 &7711412465944367130
 GameObject:
   m_ObjectHideFlags: 0
