@@ -1,16 +1,16 @@
-_cardIndex,_cardTier,_cardAbility,_cardName,_cardToolTip
-0,Legendary,Shield,Bomb Shield,방어막 사용 시 폭탄이 터집니다.
-1,Legendary,Shield,Supernova,별이 폭발하여 강력한 에너지를 방출합니다.
-2,Legendary,Bullet,Mayhem,"총알이 튕기는 횟수 +3회 증가, 총알은 커지고 강한 데미지를 줍니다."
-3,Epic,Bullet,Bounce,총알이 튕기는 횟수가 1회 증가합니다.
-4,Epic,Bullet,Bullet Storm,총알 개수가 2개 증가합니다.
-5,Epic,Shield,Blood Siphon,범위 내 적들을 흡혈합니다. 
-6,Rare,Bullet,Poision Bullet,적이 독 데미지를 입습니다.
-7,Rare,PlayerState,Shield,쉴드 쿨타임이 감소합니다.
-8,Rare,Bullet,Ice Bullet,적을 일정시간 얼립니다.
-9,Common,Bullet,Big Bullet,총알크기가 30% 커집니다.
-10,Common,Bullet,Damage Up,총알 데미지가 증가합니다.
-11,Common,PlayerState,Reroading,총알 재장전 속도가 감소합니다.
-12,Basic,PlayerState,Tanker,Hp 최대치가 30% 증가합니다.
-13,Basic,PlayerState,Speeder,이동속도가 20% 증가합니다.
-14,Basic,Bullet,Homing,총알이 적을 추격합니다.
+_cardTier,_cardAbility,_cardName,_cardToolTip
+Legendary,Shield,Bomb Shield,방어막 사용 시 폭탄이 터집니다.
+Legendary,Shield,Supernova,별이 폭발하여 강력한 에너지를 방출합니다.
+Legendary,Bullet,Mayhem,"총알이 튕기는 횟수 +3회 증가, 총알은 커지고 강한 데미지를 줍니다."
+Epic,Bullet,Bounce,총알이 튕기는 횟수가 1회 증가합니다.
+Epic,Bullet,Bullet Storm,총알 개수가 2개 증가합니다.
+Epic,Shield,Blood Siphon,범위 내 적들을 흡혈합니다. 
+Rare,Bullet,Poision Bullet,적이 독 데미지를 입습니다.
+Rare,PlayerState,Shield,쉴드 쿨타임이 감소합니다.
+Rare,Bullet,Ice Bullet,적을 일정시간 얼립니다.
+Common,Bullet,Big Bullet,총알크기가 30% 커집니다.
+Common,Bullet,Damage Up,총알 데미지가 증가합니다.
+Common,PlayerState,Reroading,총알 재장전 속도가 감소합니다.
+Basic,PlayerState,Tanker,Hp 최대치가 30% 증가합니다.
+Basic,PlayerState,Speeder,이동속도가 20% 증가합니다.
+Basic,Bullet,Homing,총알이 적을 추격합니다.
