@@ -13,6 +13,9 @@ public class SkillCardDatabase : MonoBehaviour
     private Dictionary<CardTier, List<SkillCard>> _tierBySkillCard;  // 티어별 스킬카드
     private List<SkillCard> _tempSkillCard;
 
+    // 프로퍼티
+    public Dictionary<CardTier, List<SkillCard>> tierBySkillCard => _tierBySkillCard;
+
     private void Awake()
     {
         // cvs로 데이터 가져오기 
