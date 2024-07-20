@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class MarkerMovement : MonoBehaviour
 {
-    [SerializeField] List<Marker> _markers;             // Marker 클래스 리스트에 저장
-    [SerializeField] List<Slider> _markerHpBar;         // Marker의 hp바 
-
     [Header("===snake State===")]
     [SerializeField] private float _speed;                               // 머리 속도
     [SerializeField] private bool _isReadToMove;                         // 움직일 준비가 된
@@ -16,8 +13,6 @@ public class MarkerMovement : MonoBehaviour
     private Vector2 _joystickVec;                       // 조이스틱의 vec 
     private List<Transform> _markerNowTransform;        // marker 움직임 위한 리스트 
 
-    // 프로퍼티
-    public Transform markerHead => _markers[0].transform;
     public Vector3 joystickVec { set { _joystickVec = value; } }
 
     void Start()
@@ -27,7 +22,6 @@ public class MarkerMovement : MonoBehaviour
         _isReadToMove = true;
 
         _markerNowTransform = new List<Transform>();
-
 
     }
 
@@ -53,7 +47,7 @@ public class MarkerMovement : MonoBehaviour
         Vector2 _joyVec = new Vector2(_joystickVec.x, _joystickVec.y > 0 ? 1f : -1f);
 
         // head 움직이기 
-        _markers[0].gameObject.transform.Translate
+        PlayerManager.instance.markers[0].gameObject.transform.Translate
             (_joyVec * _speed * Time.deltaTime);
 
     }
@@ -64,17 +58,17 @@ public class MarkerMovement : MonoBehaviour
         _markerNowTransform.Clear();
 
         // 현재 머리 + 몸통 위치 담아두기
-        for (int i = 0; i < _markers.Count; i++)
+        for (int i = 0; i < PlayerManager.instance.markers.Count; i++)
         {
-            _markerNowTransform.Add(_markers[i].transform);
+            _markerNowTransform.Add(PlayerManager.instance.markers[i].transform);
         }
 
         // 이동 , 머리제외
-        for (int i = 1; i < _markers.Count; i++)
+        for (int i = 1; i < PlayerManager.instance.markers.Count; i++)
         {
-            Transform _nowMarker = _markers[i].transform;
-            _markers[i].transform.position = Vector3.Lerp(
-                _markers[i].transform.position,
+            Transform _nowMarker = PlayerManager.instance.markers[i].transform;
+            PlayerManager.instance.markers[i].transform.position = Vector3.Lerp(
+                PlayerManager.instance.markers[i].transform.position,
                 _markerNowTransform[i - 1].transform.position,
                 _speed * Time.deltaTime);
         }
