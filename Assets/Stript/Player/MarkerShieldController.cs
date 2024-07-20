@@ -1,38 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class MarkerShieldController : MonoBehaviour
 {
+    /// <summary>
+    ///  deligate로 현재 실행할 shield동작, 즉 함수를 저장해놓고
+    ///  각 marekr가 실행한다면 ?? ( marker은 playerManager을 통해서 여기에 접근 )
+    /// </summary>
+
+    [Header("===basic Shield Object===")]
     [SerializeField]
-    private GameObject _basicShield;
+    private GameObject _basicShieldObject;
+
+    // shield deligate 
+    public delegate void del_MarkerShield();
+
+    // deligate 선언
+    public del_MarkerShield _markerShieldUse;
 
     private void Start()
     {
-        // 쉴드 사용 코루틴 실행 
-        StartCoroutine(F_MarkerShield());
+        // 델리게이트에 기본 쉴드 사용 추가 
+        _markerShieldUse += F_BasicShieldUse;
     }
 
-    IEnumerator F_MarkerShield() 
+    private void F_BasicShieldUse() 
     {
+        Debug.Log("기본 쉴드 사용");
 
-        // update문 효과주기 위해서 
-        while (true) 
-        {
-            // head의 coolTime만큼 기다리기 
-            yield return new WaitForSeconds
-                (PlayerManager.instance.markers[0].markerState.markerShieldCoolTime);
-
-            for (int i = 0; i < PlayerManager.instance.markers.Count; i++) 
-            {
-                // 쉴드 생성
-                GameObject _instanceShield = Instantiate( _basicShield , PlayerManager.instance.markers[0].transform);
-
-                // ## TODO : 쉴드 사용을 한곳에서 관리할지, marker별로 관리할지 생각해봐야할듯 ?
-                
-            }
-
-        }
+        // ## TODO : 기본 쉴드 함수 제작, 크기 커지는건 애니메이션으로 해도 될듯 ? 
     }
+
 }
