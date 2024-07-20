@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class SkillCard : MonoBehaviour
+public class SkillCard
 {
     private int _cardIndex;
     private CardTier _cardTier;
@@ -34,6 +34,4 @@ public class SkillCard : MonoBehaviour
         this._cardToolTip = v_str[4];
     }
 
-    // Skill card 별 스킬 사용 
-    public virtual void F_SkillUse() { }
 }

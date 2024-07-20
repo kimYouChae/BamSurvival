@@ -19,19 +19,24 @@ public class Marker : MonoBehaviour
     public MarkerState markerState => _markerState;
     public Slider markerHpBar => _markerHpBar;
 
-    private void Awake()
-    {
-    }
-
     private void Start()
     {
+        StartCoroutine(IE_MarkerUseShield());
     }
 
-
-    private void FixedUpdate()
+    IEnumerator IE_MarkerUseShield() 
     {
+        // update 효과
+        while (true) 
+        {
+            // shield 쿨타임 만큼 기다리기
+            yield return new WaitForSeconds
+                (PlayerManager.instance.markers[0].markerState.markerShieldCoolTime);
 
+            // shield controller에서 저장된 함수 실행 
+            PlayerManager.instance.markerShieldController._markerShieldUse();
+
+        }
     }
-
 
 }

@@ -31,8 +31,9 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
 
     [Header("===Script===")]
-    [SerializeField] private MarkerMovement _markerMovement;
-
+    [SerializeField] private MarkerMovement _markerMovement;                    // marker 움직임
+    [SerializeField] private MarkerShieldController _markerShieldController;    // 쉴드 컨트롤러
+    
     [Header("===Marker===")]
     [SerializeField] List<Marker> _markers;             // Marker 클래스 리스트에 저장
     [SerializeField] List<Slider> _markerHpBar;         // Marker의 hp바 
@@ -45,6 +46,7 @@ public class PlayerManager : MonoBehaviour
 
     // 프로퍼티
     public MarkerMovement markerMovement => _markerMovement;
+    public MarkerShieldController markerShieldController => _markerShieldController;
     public LayerMask markerLayer => _markerLayer;   
     public Transform markerHeadTrasform => _markerHeadTrasform;
     public List<Marker> markers => _markers;
