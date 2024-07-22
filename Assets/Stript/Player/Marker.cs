@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Marker : MonoBehaviour
 {
     /// <summary>
-    /// marker Prefab¿¡ µé¾î°¡ÀÖ´Â ½ºÅ©¸³Æ®
+    /// marker Prefabì— ë“¤ì–´ê°€ìˆëŠ” ìŠ¤í¬ë¦½íŠ¸
     /// </summary>
 
     [SerializeField]
@@ -15,7 +15,7 @@ public class Marker : MonoBehaviour
     [SerializeField]
     private Slider _markerHpBar;
 
-    // ÇÁ·ÎÆÛÆ¼
+    // í”„ë¡œí¼í‹°
     public MarkerState markerState => _markerState;
     public Slider markerHpBar => _markerHpBar;
 
@@ -24,19 +24,22 @@ public class Marker : MonoBehaviour
         StartCoroutine(IE_MarkerUseShield());
     }
 
-    IEnumerator IE_MarkerUseShield() 
+    IEnumerator IE_MarkerUseShield()
     {
-        // update È¿°ú
-        while (true) 
+        // update íš¨ê³¼ 
+        while (true)
         {
-            // shield ÄğÅ¸ÀÓ ¸¸Å­ ±â´Ù¸®±â
+            // shield ì¿¨íƒ€ì„ë™ì•ˆ ê¸°ë‹¤ë¦¬ê¸°
             yield return new WaitForSeconds
                 (PlayerManager.instance.markers[0].markerState.markerShieldCoolTime);
-
-            // shield controller¿¡¼­ ÀúÀåµÈ ÇÔ¼ö ½ÇÇà 
-            PlayerManager.instance.markerShieldController._markerShieldUse();
-
+            
+            //  ì‰´ë“œ ë¸ë¦¬ê²Œì´íŠ¸ ì‹¤í–‰ 
+            PlayerManager.instance.markerShieldController._markerShieldUse(this.gameObject.transform);
         }
-    }
 
+
+    }
 }
+
+
+

@@ -16,7 +16,7 @@ public class MarkerShieldController : MonoBehaviour
     private GameObject _basicShieldObject;
 
     // shield deligate 
-    public delegate void del_MarkerShield();
+    public delegate void del_MarkerShield(Transform v_parent);
 
     // deligate 선언
     public del_MarkerShield _markerShieldUse;
@@ -27,11 +27,14 @@ public class MarkerShieldController : MonoBehaviour
         _markerShieldUse += F_BasicShieldUse;
     }
 
-    private void F_BasicShieldUse() 
+    private void F_BasicShieldUse(Transform v_parent)
     {
         Debug.Log("기본 쉴드 사용");
 
-        // ## TODO : 기본 쉴드 함수 제작, 크기 커지는건 애니메이션으로 해도 될듯 ? 
+        GameObject _ins = Instantiate(_basicShieldObject, v_parent);
+        _ins.transform.localPosition = Vector3.zero;
+
+        Destroy(_ins, 1f);
     }
 
 }
