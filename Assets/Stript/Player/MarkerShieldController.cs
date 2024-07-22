@@ -7,8 +7,8 @@ using UnityEngine;
 public class MarkerShieldController : MonoBehaviour
 {
     /// <summary>
-    ///  deligate로 현재 실행할 shield동작, 즉 함수를 저장해놓고
-    ///  각 marekr가 실행한다면 ?? ( marker은 playerManager을 통해서 여기에 접근 )
+    ///  쉴드 실행 deligate 관리
+    ///  (+) 각 marker에서 deligate 실행 
     /// </summary>
 
     [Header("===basic Shield Object===")]
@@ -19,12 +19,12 @@ public class MarkerShieldController : MonoBehaviour
     public delegate void del_MarkerShield(Transform v_parent);
 
     // deligate 선언
-    public del_MarkerShield _markerShieldUse;
+    public del_MarkerShield del_markerShieldUse;
 
     private void Start()
     {
         // 델리게이트에 기본 쉴드 사용 추가 
-        _markerShieldUse += F_BasicShieldUse;
+        del_markerShieldUse += F_BasicShieldUse;
     }
 
     private void F_BasicShieldUse(Transform v_parent)

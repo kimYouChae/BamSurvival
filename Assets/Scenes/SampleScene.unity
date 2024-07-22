@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &108641891
 RectTransform:
   m_ObjectHideFlags: 0
@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 228528353}
   - component: {fileID: 228528352}
   - component: {fileID: 228528354}
+  - component: {fileID: 228528355}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -297,7 +298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be87805d83b141240b8af8f9920e1f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
   _isReadToMove: 0
 --- !u!114 &228528353
 MonoBehaviour:
@@ -313,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _markerMovement: {fileID: 228528352}
   _markerShieldController: {fileID: 228528354}
+  _markerBulletController: {fileID: 228528355}
   _markers:
   - {fileID: 1957815604}
   - {fileID: 23101849}
@@ -334,6 +335,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _basicShieldObject: {fileID: 5109917633994182132, guid: 7f6a6190ba384fc408da9a25fd765665, type: 3}
+--- !u!114 &228528355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228528350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ad0a03004aae749a881c8c9352bc41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletSate:
+    _bulletCount: 0
+    _bulletSpeed: 0
+    _bulletDamage: 0
+    _bulletSize: 0
+    _bulletBounceCount: 0
+  _basicBulletObject: {fileID: 5907454247569121846, guid: 9c9a59434750f71468ed6ef76ffda352, type: 3}
 --- !u!1 &358947189
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,13 +531,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardSelectUi: {fileID: 108641890}
-  _cardSelectCardUi:
-  - {fileID: 1919959794640848025}
-  - {fileID: 1919959795029221722}
-  - {fileID: 7665798747595389686}
-  - {fileID: 1919959794590544578}
-  - {fileID: 1919959794104608099}
   _currCardIndex: 0
+  _cardList: []
+  _cardNameList: []
+  _cardImageList: []
+  _cardToopTipList: []
+  _cardTierSprite: []
 --- !u!114 &501376606
 MonoBehaviour:
   m_ObjectHideFlags: 0

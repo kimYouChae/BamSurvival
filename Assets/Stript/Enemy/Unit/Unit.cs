@@ -36,13 +36,6 @@ public class Unit : MonoBehaviour
     [SerializeField] public UNIT_STATE _pre_UNITS_TATE;           // 이전 enum 
 
 
-    [Header("===LayerMask===")]
-    public LayerMask _hitWallLayerMask;
-
-    // ##TODO 수정예정
-    [Header("===Ect Object===")]
-    [SerializeField] protected GameObject _dangerLine;
-    [SerializeField] protected LineRenderer _dangerBounceLine;
 
     // 프로퍼티
     public float unitSpeed      => _unitSpeed;
@@ -51,7 +44,7 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        _hitWallLayerMask = LayerMask.GetMask("Wall");
+
     }
 
     // 상태 초기화

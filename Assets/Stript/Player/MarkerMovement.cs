@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class MarkerMovement : MonoBehaviour
 {
     [Header("===snake State===")]
-    [SerializeField] private float _speed;                               // 머리 속도
     [SerializeField] private bool _isReadToMove;                         // 움직일 준비가 된
 
     [Header("===snake Move===")]
@@ -17,7 +16,6 @@ public class MarkerMovement : MonoBehaviour
 
     void Start()
     {
-        _speed = 3f;
         _joystickVec = Vector2.up;
         _isReadToMove = true;
 
@@ -48,7 +46,7 @@ public class MarkerMovement : MonoBehaviour
 
         // head 움직이기 
         PlayerManager.instance.markers[0].gameObject.transform.Translate
-            (_joyVec * _speed * Time.deltaTime);
+            (_joyVec * PlayerManager.instance.markers[0].markerState.markerMoveSpeed * Time.deltaTime);
 
     }
 
@@ -70,7 +68,7 @@ public class MarkerMovement : MonoBehaviour
             PlayerManager.instance.markers[i].transform.position = Vector3.Lerp(
                 PlayerManager.instance.markers[i].transform.position,
                 _markerNowTransform[i - 1].transform.position,
-                _speed * Time.deltaTime);
+                PlayerManager.instance.markers[0].markerState.markerMoveSpeed * Time.deltaTime);
         }
     }
 }
