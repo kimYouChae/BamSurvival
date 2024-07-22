@@ -23,8 +23,6 @@ public class Bug_Basic :  Unit
         // FSM excute 
         F_CurrStateExcute();
 
-        // Ray ±×¸®±â 
-        F_DrawLine();
     }
 
     protected override void F_InitUnitUnitState()
