@@ -76,15 +76,13 @@ public class CardSelectUI : MonoBehaviour
 
     }
 
-    // card idx 받아오기
+    // ui card idx 받아오기 (0부터 4까지)
     public void F_SetCardIndex(int v_idx) 
     {
 
         // 현재 인덱스 랑 새로 인덱스랑 다르면?
         if(_currCardIndex != v_idx) 
         {
-            //## TODO : 크기안바뀜 왜지 ?
-
             // 선택된 카드 크기 키우기 
             _cardList[v_idx].GetComponent<RectTransform>().sizeDelta = new Vector2(400,600);
 
@@ -102,6 +100,7 @@ public class CardSelectUI : MonoBehaviour
             _cardSelectUi.SetActive(false);
 
             // ##TODO : Skillcard에 맞는 효과 추가
+            // index에 맞는 skillcard 클래스를 return할 수 있음 
 
         }
     }

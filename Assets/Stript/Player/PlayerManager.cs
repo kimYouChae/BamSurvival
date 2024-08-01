@@ -7,23 +7,29 @@ using UnityEngine.UI;
 [System.Serializable]
 public class MarkerState
 {
-    [SerializeField] private int _markerHp;              // marker Hp
-    [SerializeField] private float _markerMoveSpeed;       // marker speed
-    [SerializeField] private int _markerShieldCoolTime;  // marker 쉴드 쿨타임 
+    [SerializeField] private int _markerHp;                     // marker Hp
+    [SerializeField] private float _markerMoveSpeed;            // marker speed
+    [SerializeField] private float _markerShieldCoolTime;       // marker 쉴드 쿨타임 
+    [SerializeField] private float _markerShootCoolTime;        // 총알 발사 쿨타임 
+    [SerializeField] private float _markerSearchRadious;        // unit 탐색 범위
 
     // 프로퍼티
     public int markerHp => _markerHp;
-    public float markerMoveSpeed => _markerMoveSpeed; 
-    public int markerShieldCoolTime => _markerShieldCoolTime;
+    public float markerMoveSpeed => _markerMoveSpeed;
+    public float markerShieldCoolTime => _markerShieldCoolTime;
+    public float markerShootCoolTime => _markerShootCoolTime;
+    public float markerSearchRadious => _markerSearchRadious;
+
 
     // 생성자 
-    public void F_SetMarkerState( int v_hp , float v_speed , int v_sCoolTime) 
+    public void F_SetMarkerState(int v_hp, float v_speed, float v_sCoolTime, float v_bCoolTime, float v_search)
     {
         this._markerHp = v_hp;
         this._markerMoveSpeed = v_speed;
         this._markerShieldCoolTime = v_sCoolTime;
+        this._markerShootCoolTime = v_bCoolTime;
+        this._markerSearchRadious = v_search;
     }
-    
 }
 
 public class PlayerManager : MonoBehaviour
@@ -33,7 +39,8 @@ public class PlayerManager : MonoBehaviour
     [Header("===Script===")]
     [SerializeField] private MarkerMovement _markerMovement;                    // marker 움직임
     [SerializeField] private MarkerShieldController _markerShieldController;    // 쉴드 컨트롤러
-    
+    [SerializeField] private MarkerBulletController _markerBulletController; // 총알 컨트롤러
+
     [Header("===Marker===")]
     [SerializeField] List<Marker> _markers;             // Marker 클래스 리스트에 저장
     [SerializeField] List<Slider> _markerHpBar;         // Marker의 hp바 
@@ -47,6 +54,7 @@ public class PlayerManager : MonoBehaviour
     // 프로퍼티
     public MarkerMovement markerMovement => _markerMovement;
     public MarkerShieldController markerShieldController => _markerShieldController;
+    public MarkerBulletController markerBulletController => _markerBulletController;
     public LayerMask markerLayer => _markerLayer;   
     public Transform markerHeadTrasform => _markerHeadTrasform;
     public List<Marker> markers => _markers;
@@ -76,7 +84,7 @@ public class PlayerManager : MonoBehaviour
 
         for(int i = 0; i < _markers.Count; i++) 
         {
-            _markers[i].markerState.F_SetMarkerState(10 , 3f , 5);
+            _markers[i].markerState.F_SetMarkerState(10, 1f, 5f, 5f, 5f);
         }
     }
 }
