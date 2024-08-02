@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class SkillCard
+public class SkillCard 
 {
-    private int _cardIndex;
-    private CardTier _cardTier;
-    private CardAbility _cardAbility;
-    private string _cardName;
-    private string _cardToolTip;
+    protected int _cardIndex;
+    protected CardTier _cardTier;
+    protected CardAbility _cardAbility;
+    protected string _cardName;
+    protected string _cardToolTip;
 
     // 프로퍼티
     public int cardIndex => _cardIndex;
@@ -34,4 +34,6 @@ public class SkillCard
         this._cardToolTip = v_str[4];
     }
 
+    // 각 skillcard에서 공격효과
+    protected virtual void F_SkillcardEffect() { }
 }

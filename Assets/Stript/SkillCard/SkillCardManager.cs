@@ -16,7 +16,8 @@ public enum CardAbility // 카드 능력치
 {
     Shield,         // 쉴드형
     PlayerState,    // 플레이어 스탯 형
-    Bullet          // 총알 스탯 형 
+    BulletShoot,    // 총알 발사
+    BulletExplosion // 총알 폭발 (unit에게 닿였을 때)
 }
 
 public class SkillCardManager : MonoBehaviour
