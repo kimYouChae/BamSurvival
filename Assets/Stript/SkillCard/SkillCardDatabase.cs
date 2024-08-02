@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,6 +28,17 @@ public class SkillCardDatabase : MonoBehaviour
 
         // cvs로 데이터 가져오기 
         F_InitSkillCard();
+
+        // 잘됐는지 한번 실행해보자
+        /*
+        foreach (var temp in _tierBySkillCard) 
+        {
+            Debug.Log(temp.Key + "의 리스트 : ");
+
+            for (int i = 0; i < temp.Value.Count; i++)
+                Debug.Log(temp.Value[i].cardName);
+        }
+        */
     }
 
     private void F_InitDictionary()
