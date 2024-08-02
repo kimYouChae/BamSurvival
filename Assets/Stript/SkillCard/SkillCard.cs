@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class SkillCard
+[System.Serializable]
+public abstract class SkillCard
 {
-    private int _cardIndex;
-    private CardTier _cardTier;
-    private CardAbility _cardAbility;
-    private string _cardName;
-    private string _cardToolTip;
+    [SerializeField] protected int _cardIndex;
+    [SerializeField] protected CardTier _cardTier;
+    [SerializeField] protected CardAbility _cardAbility;
+    [SerializeField] protected string _cardName;
+    [SerializeField] protected string _cardToolTip;
 
     // 프로퍼티
     public int cardIndex => _cardIndex;
@@ -20,7 +21,10 @@ public class SkillCard
     public string cardToolTip => _cardToolTip;
 
     // 생성자
-    public SkillCard( string[] v_str ) 
+    public SkillCard() { }
+
+    // 초기화 함수
+    public void F_InitField( string[] v_str ) 
     {
         // 0. card idx
         this._cardIndex = int.Parse(v_str[0]);
@@ -34,4 +38,6 @@ public class SkillCard
         this._cardToolTip = v_str[4];
     }
 
+    // 각 skillcard에서 공격효과
+    public abstract void F_SkillcardEffect();
 }

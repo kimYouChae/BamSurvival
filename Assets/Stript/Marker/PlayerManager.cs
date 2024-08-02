@@ -39,7 +39,8 @@ public class PlayerManager : MonoBehaviour
     [Header("===Script===")]
     [SerializeField] private MarkerMovement _markerMovement;                    // marker 움직임
     [SerializeField] private MarkerShieldController _markerShieldController;    // 쉴드 컨트롤러
-    [SerializeField] private MarkerBulletController _markerBulletController; // 총알 컨트롤러
+    [SerializeField] private MarkerBulletController _markerBulletController;    // 총알 컨트롤러
+    [SerializeField] private MarkerExplosionConteroller _markerExplosionConteroller;    // 총알 폭발시 컨트롤러
 
     [Header("===Marker===")]
     [SerializeField] List<Marker> _markers;             // Marker 클래스 리스트에 저장
@@ -55,6 +56,7 @@ public class PlayerManager : MonoBehaviour
     public MarkerMovement markerMovement => _markerMovement;
     public MarkerShieldController markerShieldController => _markerShieldController;
     public MarkerBulletController markerBulletController => _markerBulletController;
+    public MarkerExplosionConteroller markerExplosionConteroller => _markerExplosionConteroller;
     public LayerMask markerLayer => _markerLayer;   
     public Transform markerHeadTrasform => _markerHeadTrasform;
     public List<Marker> markers => _markers;
@@ -86,5 +88,11 @@ public class PlayerManager : MonoBehaviour
         {
             _markers[i].markerState.F_SetMarkerState(10, 1f, 5f, 5f, 5f);
         }
+    }
+
+    // skillcard의 효과 적용
+    public void F_ApplyCardEffect(SkillCard v_Card ) 
+    {
+        v_Card.F_SkillcardEffect();
     }
 }

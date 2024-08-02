@@ -16,7 +16,8 @@ public enum CardAbility // 카드 능력치
 {
     Shield,         // 쉴드형
     PlayerState,    // 플레이어 스탯 형
-    Bullet          // 총알 스탯 형 
+    BulletShoot,    // 총알 발사
+    BulletExplosion // 총알 폭발 (unit에게 닿였을 때)
 }
 
 public class SkillCardManager : MonoBehaviour
@@ -106,5 +107,36 @@ public class SkillCardManager : MonoBehaviour
 
         // 랜덤으로 선택된 카드를 리스트에 추가 
         _randomSelectCard.Add(new Tuple<CardTier, SkillCard>(v_tier, v_cardList[_rand]));
+    }
+
+    // 스킬카드에 따라 효과적용
+    public void F_applyEffectBySkillcard(Tuple<CardTier , SkillCard> v_selectCard )  
+    {
+        CardTier _cardTier = v_selectCard.Item1;
+        SkillCard skillCard = v_selectCard.Item2;
+
+        // skillcard의 cardAbility에 따라 스크립트 넘겨주는게 다름 
+        switch (skillCard.cardAbility) 
+        {
+            // PlayerManager에 접근
+            case CardAbility.PlayerState:
+                PlayerManager.instance.F_ApplyCardEffect(skillCard);
+                break;
+
+            // MarkerShieldController에 접근 
+            case CardAbility.Shield:
+                PlayerManager.instance.markerShieldController.F_ApplyShieldEffect();
+                break;
+            
+            // MarkerBulletController에 접근
+            case CardAbility.BulletShoot:
+                PlayerManager.instance.markerBulletController.F_ApplyBulletEffect();
+                break;
+            
+            // MarkerExplosionConteroller에 접근
+            case CardAbility.BulletExplosion:
+                PlayerManager.instance.markerExplosionConteroller.F_ApplyExplosionEffect();
+                break;
+        }
     }
 }

@@ -33,4 +33,9 @@ public class MarkerShieldController : MonoBehaviour
 
         Destroy(_ins, 1f);
     }
+
+    public void F_ApplyShieldEffect() 
+    {
+        // ##TODO : 효과적용 코드 짜기 
+    }
 }

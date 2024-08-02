@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 228528352}
   - component: {fileID: 228528354}
   - component: {fileID: 228528355}
+  - component: {fileID: 228528356}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -315,6 +316,7 @@ MonoBehaviour:
   _markerMovement: {fileID: 228528352}
   _markerShieldController: {fileID: 228528354}
   _markerBulletController: {fileID: 228528355}
+  _markerExplosionConteroller: {fileID: 228528356}
   _markers:
   - {fileID: 1957815604}
   - {fileID: 23101849}
@@ -355,6 +357,18 @@ MonoBehaviour:
     _bulletSize: 0
     _bulletBounceCount: 0
   _basicBulletObject: {fileID: 7176633069924475950, guid: 59c76bc3f7eccbd45b2d87e65c5ab4ba, type: 3}
+--- !u!114 &228528356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228528350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89696884f93dd1c40ac6915226baabac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &358947189
 GameObject:
   m_ObjectHideFlags: 0
