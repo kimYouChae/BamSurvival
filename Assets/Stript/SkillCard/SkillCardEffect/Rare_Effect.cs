@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Rare_PoisionBullet : SkillCard
 {
-    protected override void F_SkillcardEffect()
+    public override void F_SkillcardEffect()
     {
 
     }
 }
 public class Rare_RapidBarier : SkillCard
 {
-    protected override void F_SkillcardEffect()
+    public override void F_SkillcardEffect()
     {
 
     }
@@ -19,7 +19,7 @@ public class Rare_RapidBarier : SkillCard
 public class Rare_IceBullet : SkillCard
 {
 
-    protected override void F_SkillcardEffect()
+    public override void F_SkillcardEffect()
     {
 
     }

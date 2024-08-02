@@ -39,5 +39,5 @@ public abstract class SkillCard
     }
 
     // 각 skillcard에서 공격효과
-    protected abstract void F_SkillcardEffect();
+    public abstract void F_SkillcardEffect();
 }

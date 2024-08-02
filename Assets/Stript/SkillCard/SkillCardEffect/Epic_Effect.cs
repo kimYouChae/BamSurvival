@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Epic_Bounce : SkillCard
 {
-    protected override void F_SkillcardEffect()
+    public override void F_SkillcardEffect()
     {
 
     }
 }
 public class Epic_BulletStrom : SkillCard
 {
-    protected override void F_SkillcardEffect()
+    public override void F_SkillcardEffect()
     {
 
     }
@@ -19,7 +19,7 @@ public class Epic_BulletStrom : SkillCard
 
 public class Epic_BloodSiphon : SkillCard
 {
-    protected override void F_SkillcardEffect()
+    public override void F_SkillcardEffect()
     {
 
     }

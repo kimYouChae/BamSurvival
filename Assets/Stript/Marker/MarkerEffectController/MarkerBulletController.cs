@@ -93,4 +93,8 @@ public class MarkerBulletController : MonoBehaviour
 
     }
 
+    public void F_ApplyBulletEffect() 
+    {
+        // ##TODO : 효과적용 코드 짜기 
+    }
 }

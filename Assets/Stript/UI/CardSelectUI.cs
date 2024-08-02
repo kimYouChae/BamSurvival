@@ -28,11 +28,6 @@ public class CardSelectUI : MonoBehaviour
     [SerializeField]
     private List<Tuple<CardTier, SkillCard>> _finalSelectCard; // 랜덤으로 선택 된 카드 
 
-    private void Start()
-    { 
-    
-    }
-
     void Update()
     {
         //  ##TODO : 임시로 L 누르면 
@@ -80,7 +75,7 @@ public class CardSelectUI : MonoBehaviour
     public void F_SetCardIndex(int v_idx) 
     {
 
-        // 현재 인덱스 랑 새로 인덱스랑 다르면?
+        // 현재 인덱스 = 클릭인덱스 => card ui 효과주기 
         if(_currCardIndex != v_idx) 
         {
             // 선택된 카드 크기 키우기 
@@ -94,14 +89,14 @@ public class CardSelectUI : MonoBehaviour
             _currCardIndex = v_idx;
 
         }
+        // 현재 인덱스 != 클릭인텍스 => 해당 skillcard의 효과 적용 
         else 
         {
             // ui on 
             _cardSelectUi.SetActive(false);
 
-            // ##TODO : Skillcard에 맞는 효과 추가
             // index에 맞는 skillcard 클래스를 return할 수 있음 
-
+            SkillCardManager.instance.F_applyEffectBySkillcard(_finalSelectCard[_currCardIndex]);
         }
     }
 
