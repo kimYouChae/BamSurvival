@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;   // regex 사용
@@ -9,26 +10,48 @@ public class SkillCardDatabase : MonoBehaviour
     string SPLIT_RE = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
     string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
 
+    // cvs에서 '_cardName'인 열 이름 
+    const string _skillcardColunm = "_cardName";
+
     [Header("===Container===")]
+    [SerializeField]
     private Dictionary<CardTier, List<SkillCard>> _tierBySkillCard;  // 티어별 스킬카드
-    private List<SkillCard> _tempSkillCard;
 
     // 프로퍼티
     public Dictionary<CardTier, List<SkillCard>> tierBySkillCard => _tierBySkillCard;
 
     private void Awake()
     {
+        // dictionary 초기화
+        F_InitDictionary();
+
         // cvs로 데이터 가져오기 
         F_InitSkillCard();
+    }
 
-        // Dictionary 초기화
-        F_InitDictionary();
+    private void F_InitDictionary()
+    {
+        // 시작할 때 dictonray를 초기화 하고
+        // cvs에서 데이터 가져올 때 함수로 값 넣으면 될듯 
+
+        _tierBySkillCard = new Dictionary<CardTier, List<SkillCard>>();
+
+        // 0. list 초기화 ,  카드 티어만큼 초기화 
+        for (int i = 0; i < System.Enum.GetValues(typeof(CardTier)).Length; i++)
+        {
+            CardTier _temp = (CardTier)i;
+
+            // dictionary에 key가 없으면? 추가 후 list 초기화
+            if (!tierBySkillCard.ContainsKey(_temp)) 
+            {
+                tierBySkillCard[_temp] = new List<SkillCard>();
+            }
+        }
+
     }
 
     private void F_InitSkillCard() 
     {
-        // 초기화
-        _tempSkillCard = new List<SkillCard>();
 
         // cvs 파일을 텍스트 파일로 가져오기 
         TextAsset textAsset = Resources.Load("SkillCard") as TextAsset;
@@ -37,36 +60,26 @@ public class SkillCardDatabase : MonoBehaviour
         // 첫번째 행 자르기 
         string[] header = Regex.Split(lines[0] , SPLIT_RE);
 
-        for (int i = 1; i < lines.Length; i++) 
+        // _cardName이 몇번째 인덱스인지 찾기
+        int _nameIdx = Array.IndexOf(header, _skillcardColunm); // 3
+
+        for (int i = 1; i < lines.Length; i++)
         {
-            // 행을 단어별로 자르기 
+            // 1. 행을 단어별로 자르기 
             string[] values = Regex.Split(lines[i], SPLIT_RE);
 
-            // Skillcard 생성 
-            SkillCard _card = new SkillCard(values);
+            // 2. Skillcard 생성 
+            // 2-1. name을 이용해서 클래스 생성 ( Acticator 사용 )
+            SkillCard _card = (SkillCard)Activator.CreateInstance(Type.GetType(values[_nameIdx]));
 
-            // 임시 리스트에 추가 
-            _tempSkillCard.Add( _card );
+            // 2-2. skillcard에 값 넣기 
+            _card.F_InitField(values);
+
+            // 3. dictonary에 넣기
+            tierBySkillCard[_card.cardTier].Add(_card);
+
         }
 
-    }
-
-    private void F_InitDictionary() 
-    {
-        // dictionary에 분류해서 넣기 
-        _tierBySkillCard = new Dictionary<CardTier, List<SkillCard>>();
-
-        foreach (SkillCard card in _tempSkillCard) 
-        {
-            CardTier _myTier = card.cardTier;
-            
-            // tier에 해당하는 리스트가 없으면 => 리스트 초기화 
-            if(!_tierBySkillCard.ContainsKey(_myTier))
-                _tierBySkillCard[_myTier] = new List<SkillCard>();
-
-            // tier에 따른 리스트에 값 넣기 
-            _tierBySkillCard[ _myTier ].Add( card );    
-        }
     }
 
 }

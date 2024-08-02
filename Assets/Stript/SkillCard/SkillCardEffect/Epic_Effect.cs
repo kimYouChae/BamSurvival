@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class Epic_Bounce : SkillCard
 {
-    public Epic_Bounce(string[] v_str) : base(v_str)
+    protected override void F_SkillcardEffect()
     {
+
     }
 }
 public class Epic_BulletStrom : SkillCard
 {
-    public Epic_BulletStrom(string[] v_str) : base(v_str)
+    protected override void F_SkillcardEffect()
     {
+
     }
 }
 
 public class Epic_BloodSiphon : SkillCard
 {
-    public Epic_BloodSiphon(string[] v_str) : base(v_str)
+    protected override void F_SkillcardEffect()
     {
+
     }
 }
