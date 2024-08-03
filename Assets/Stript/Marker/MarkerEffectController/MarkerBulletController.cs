@@ -8,19 +8,19 @@ public class BulletSate
 {
     [SerializeField] int _bulletCount;    // 한번에 생성하는 총알 갯수
     [SerializeField] float _bulletSpeed;    // 총알 속도
-    [SerializeField] int _bulletDamage;   // 총알 데미지 
-    [SerializeField] int _bulletSize;     // 총알 크기 
+    [SerializeField] float _bulletDamage;   // 총알 데미지 
+    [SerializeField] float _bulletSize;     // 총알 크기 
     [SerializeField] int _bulletBounceCount;  // 총알 튕기는 횟수 
 
     // 프로퍼티 
-    public int bulletCount => _bulletCount;
-    public float bulletSpeed => _bulletSpeed;
-    public int bulletDamage => _bulletDamage;
-    public int bulletSize => _bulletSize;
-    public int bulletBounceCount => _bulletBounceCount;
+    public int bulletCount { get => _bulletCount; set { _bulletCount = value; } }
+    public float bulletSpeed { get => _bulletSpeed; set { _bulletSpeed = value; } }
+    public float bulletDamage { get => _bulletDamage; set { _bulletDamage = value; } }
+    public float bulletSize { get => _bulletSize; set { _bulletSize = value; } }
+    public int bulletBounceCount { get => _bulletBounceCount; set { _bulletBounceCount = value; } }
 
     // 생성자
-    public BulletSate(int v_cnt, float v_speed, int v_damage, int v_size, int _cnt)
+    public BulletSate(int v_cnt, float v_speed, float v_damage, float v_size, int _cnt)
     {
         this._bulletCount = v_cnt;
         this._bulletSpeed = v_speed;
@@ -54,7 +54,7 @@ public class MarkerBulletController : MonoBehaviour
     private void Start()
     {
         // 총알 state 초기화 
-        _bulletSate = new BulletSate(1, 3f, 1, 1, 1);
+        _bulletSate = new BulletSate(1, 3f, 1f, 1f, 1);
 
     }
 
@@ -93,7 +93,7 @@ public class MarkerBulletController : MonoBehaviour
 
     }
 
-    public void F_ApplyBulletEffect() 
+    public void F_ApplyBulletEffect(SkillCard v_card) 
     {
         // ##TODO : 효과적용 코드 짜기 
     }

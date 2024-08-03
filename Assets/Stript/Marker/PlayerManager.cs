@@ -7,24 +7,27 @@ using UnityEngine.UI;
 [System.Serializable]
 public class MarkerState
 {
-    [SerializeField] private int _markerHp;                     // marker Hp
+    [SerializeField] private float _markerHp;                     // marker Hp
+    [SerializeField] private float _markerMaxHp;                  // marker max hp
     [SerializeField] private float _markerMoveSpeed;            // marker speed
     [SerializeField] private float _markerShieldCoolTime;       // marker ½¯µå ÄðÅ¸ÀÓ 
     [SerializeField] private float _markerShootCoolTime;        // ÃÑ¾Ë ¹ß»ç ÄðÅ¸ÀÓ 
     [SerializeField] private float _markerSearchRadious;        // unit Å½»ö ¹üÀ§
 
     // ÇÁ·ÎÆÛÆ¼
-    public int markerHp => _markerHp;
-    public float markerMoveSpeed => _markerMoveSpeed;
-    public float markerShieldCoolTime => _markerShieldCoolTime;
-    public float markerShootCoolTime => _markerShootCoolTime;
-    public float markerSearchRadious => _markerSearchRadious;
+    public float markerHp => _markerHp;
+    public float markerMaxHp { get => _markerMaxHp; set { _markerMaxHp = value; } }
+    public float markerMoveSpeed { get => _markerMoveSpeed; set { _markerMoveSpeed = value;  } }
+    public float markerShieldCoolTime { get => _markerShieldCoolTime; set { _markerShieldCoolTime = value; } }
+    public float markerShootCoolTime { get => _markerShootCoolTime; set { _markerShootCoolTime = value; } }
+    public float markerSearchRadious { get => _markerSearchRadious;  set { _markerSearchRadious = value; } }
 
 
     // »ý¼ºÀÚ 
-    public void F_SetMarkerState(int v_hp, float v_speed, float v_sCoolTime, float v_bCoolTime, float v_search)
+    public void F_SetMarkerState(float v_hp, float v_maxHp , float v_speed, float v_sCoolTime, float v_bCoolTime, float v_search)
     {
         this._markerHp = v_hp;
+        this._markerMaxHp = v_maxHp;
         this._markerMoveSpeed = v_speed;
         this._markerShieldCoolTime = v_sCoolTime;
         this._markerShootCoolTime = v_bCoolTime;
@@ -61,6 +64,9 @@ public class PlayerManager : MonoBehaviour
     public Transform markerHeadTrasform => _markerHeadTrasform;
     public List<Marker> markers => _markers;
     public List<Slider> markerHpBar => _markerHpBar;
+
+    // marker count return 
+    public int F_MarkerListCount() => _markers.Count;
    
 
     private void Awake()
@@ -86,7 +92,7 @@ public class PlayerManager : MonoBehaviour
 
         for(int i = 0; i < _markers.Count; i++) 
         {
-            _markers[i].markerState.F_SetMarkerState(10, 1f, 5f, 5f, 5f);
+            _markers[i].markerState.F_SetMarkerState(10f, 10f, 1f, 5f, 5f, 5f);
         }
     }
 
