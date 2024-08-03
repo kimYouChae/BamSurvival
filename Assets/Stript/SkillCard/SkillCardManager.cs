@@ -125,17 +125,17 @@ public class SkillCardManager : MonoBehaviour
 
             // MarkerShieldController에 접근 
             case CardAbility.Shield:
-                PlayerManager.instance.markerShieldController.F_ApplyShieldEffect();
+                PlayerManager.instance.markerShieldController.F_ApplyShieldEffect(skillCard);
                 break;
             
             // MarkerBulletController에 접근
             case CardAbility.BulletShoot:
-                PlayerManager.instance.markerBulletController.F_ApplyBulletEffect();
+                PlayerManager.instance.markerBulletController.F_ApplyBulletEffect(skillCard);
                 break;
             
             // MarkerExplosionConteroller에 접근
             case CardAbility.BulletExplosion:
-                PlayerManager.instance.markerExplosionConteroller.F_ApplyExplosionEffect();
+                PlayerManager.instance.markerExplosionConteroller.F_ApplyExplosionEffect(skillCard);
                 break;
         }
     }
