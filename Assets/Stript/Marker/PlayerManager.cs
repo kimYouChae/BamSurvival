@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MarkerState
 {
     [SerializeField] private int _markerHp;                     // marker Hp
+    [SerializeField] private int _markerMaxHp;                  // marker max hp
     [SerializeField] private float _markerMoveSpeed;            // marker speed
     [SerializeField] private float _markerShieldCoolTime;       // marker ½¯µå ÄðÅ¸ÀÓ 
     [SerializeField] private float _markerShootCoolTime;        // ÃÑ¾Ë ¹ß»ç ÄðÅ¸ÀÓ 
@@ -15,6 +16,7 @@ public class MarkerState
 
     // ÇÁ·ÎÆÛÆ¼
     public int markerHp => _markerHp;
+    public int markerMaxHp => _markerMaxHp;
     public float markerMoveSpeed => _markerMoveSpeed;
     public float markerShieldCoolTime => _markerShieldCoolTime;
     public float markerShootCoolTime => _markerShootCoolTime;
@@ -22,9 +24,10 @@ public class MarkerState
 
 
     // »ý¼ºÀÚ 
-    public void F_SetMarkerState(int v_hp, float v_speed, float v_sCoolTime, float v_bCoolTime, float v_search)
+    public void F_SetMarkerState(int v_hp, int v_maxHp , float v_speed, float v_sCoolTime, float v_bCoolTime, float v_search)
     {
         this._markerHp = v_hp;
+        this._markerMaxHp = v_maxHp;
         this._markerMoveSpeed = v_speed;
         this._markerShieldCoolTime = v_sCoolTime;
         this._markerShootCoolTime = v_bCoolTime;
@@ -86,7 +89,7 @@ public class PlayerManager : MonoBehaviour
 
         for(int i = 0; i < _markers.Count; i++) 
         {
-            _markers[i].markerState.F_SetMarkerState(10, 1f, 5f, 5f, 5f);
+            _markers[i].markerState.F_SetMarkerState(10, 10, 1f, 5f, 5f, 5f);
         }
     }
 
