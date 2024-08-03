@@ -9,7 +9,7 @@ _cardIndex,_cardTier,_cardAbility,_cardName,_cardToolTip
 7,Rare,PlayerState,Rare_RapidBarier,쉴드 쿨타임이 감소합니다.
 8,Rare,BulletExplosion,Rare_IceBullet,적을 일정시간 얼립니다.
 9,Common,BulletShoot,Common_BigBullet,총알크기가 30% 커집니다.
-10,Common,BulletShoot,Common_DamageUp,총알 데미지가 증가합니다.
+10,Common,BulletShoot,Common_DamageUp,총알 데미지가 20% 증가합니다.
 11,Common,PlayerState,Common_RapidReload,총알 재장전 속도가 감소합니다.
 12,Basic,PlayerState,Basic_Tanker,Hp 최대치가 30% 증가합니다.
 13,Basic,PlayerState,Basic_Speeder,이동속도가 20% 증가합니다.
