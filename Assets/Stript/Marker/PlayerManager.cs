@@ -55,6 +55,10 @@ public class PlayerManager : MonoBehaviour
     [Header("===Transform===")]
     [SerializeField] private Transform _markerHeadTrasform;      // marker head의 transform
 
+    [Header("===Prefab===")]
+    [SerializeField] private GameObject _boundaryToScreenObj;      // 스크린 기준 boundary
+    [SerializeField] private Transform _boudaryParent;            // boundary 부모 
+
     // 프로퍼티
     public MarkerMovement markerMovement => _markerMovement;
     public MarkerShieldController markerShieldController => _markerShieldController;
@@ -72,6 +76,9 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        // Boundary 생성 
+        F_CreateBoundaryByScreen();
     }
 
     private void Start()
@@ -106,6 +113,55 @@ public class PlayerManager : MonoBehaviour
     
         // marker ui 업데이트 
         UIManager.Instance.F_UpdateMarkerStateText();
+
+    }
+
+    // 해상도 따라서 bullet이 bounce할 경계선 생성 
+    public void F_CreateBoundaryByScreen() 
+    { 
+        // 기기의 해상도에 따라서 boundary 달라짐
+        int _screenWidth = Screen.width;    
+        int _screenHeight = Screen.height;
+
+        // ##TODO 뭔가 큰데 ?!
+        Debug.Log("화면 width : " + _screenWidth + " / height: " + _screenHeight);
+
+        // 위쪽 
+        Vector3 _uppderBoundary
+            = new Vector3(_markers[0].transform.position.x , _markers[0].transform.position.y + _screenHeight/2);
+
+        // 오른쪽
+        Vector3 _rightBoundary
+            = new Vector3(_markers[0].transform.position.x + _screenWidth / 2 , _markers[0].transform.position.y);
+
+        // 아래
+        Vector3 _downBoundary
+            = new Vector3(_markers[0].transform.position.x, _markers[0].transform.position.y - _screenHeight / 2);
+
+        // 왼쪽
+        Vector3 _leftBoundary
+            = new Vector3(_markers[0].transform.position.x - _screenWidth / 2, _markers[0].transform.position.y);
+
+
+        // 위 boudnary 생성 
+        GameObject _uppderObj = Instantiate(_boundaryToScreenObj, _uppderBoundary, Quaternion.identity);
+        _uppderObj.transform.parent = _boudaryParent;
+        _uppderObj.transform.localScale = new Vector3(_screenWidth, 1f, 1f);
+
+        // 오른 Boundary 생성
+        GameObject _rightObj = Instantiate(_boundaryToScreenObj, _rightBoundary, Quaternion.identity);
+        _rightObj.transform.parent = _boudaryParent;
+        _rightObj.transform.localScale = new Vector3(1f, _screenHeight, 1f);
+
+        // 아래 Boundary 생성
+        GameObject _downObj = Instantiate(_boundaryToScreenObj, _downBoundary, Quaternion.identity);
+        _downObj.transform.parent = _boudaryParent;
+        _downObj.transform.localScale = new Vector3(_screenWidth, 1f, 1f);
+
+        // 왼 Boundary 생성
+        GameObject _leftObj = Instantiate(_boundaryToScreenObj, _leftBoundary, Quaternion.identity);
+        _leftObj.transform.parent = _boudaryParent;
+        _leftObj.transform.localScale = new Vector3(1f, _screenHeight, 1f);
 
     }
 }

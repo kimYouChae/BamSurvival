@@ -86,7 +86,6 @@ public class MarkerBulletController : MonoBehaviour
             // bullet에 도착지 정해주기
             _bullet.GetComponent<BasicBullet>().bulletDestination = _destination;
             
-
         }
 
     }

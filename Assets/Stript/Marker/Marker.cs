@@ -63,6 +63,6 @@ public class Marker : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere( gameObject.transform.position
-            , PlayerManager.instance.markers[0].markerState.markerSearchRadious);
+            , 7f);
     }
 }
