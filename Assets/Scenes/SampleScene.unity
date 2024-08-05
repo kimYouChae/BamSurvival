@@ -214,9 +214,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 213510094}
+  - component: {fileID: 213510096}
   - component: {fileID: 213510095}
   m_Layer: 0
-  m_Name: UnitGenerator
+  m_Name: UnitManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,6 +252,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitSpawn: {fileID: 2116573932}
   _tempUnit: {fileID: 6673306469910371544, guid: 9c706faaee652b4488129da838deb499, type: 3}
+--- !u!114 &213510096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213510093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd44b6f0cff7604097f65d57ea1d9ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _unitGenerator: []
 --- !u!1 &228528350
 GameObject:
   m_ObjectHideFlags: 0
