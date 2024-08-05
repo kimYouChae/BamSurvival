@@ -57,4 +57,12 @@ public class Marker : MonoBehaviour
             PlayerManager.instance.markerBulletController.F_BasicBulletShoot(_markerMuzzleTrs);
         }
     }
+
+    // 임시 ) radious만큼 draw
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere( gameObject.transform.position
+            , PlayerManager.instance.markers[0].markerState.markerSearchRadious);
+    }
 }
