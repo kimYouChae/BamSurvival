@@ -65,20 +65,18 @@ public class MarkerBulletController : MonoBehaviour
         // unit collider 탐색
         Transform _destination;
 
+        //##TODO : 여기서 오류남 null 
+        // unit만 콜라이더 검사 
+        Collider2D[] _coll = Physics2D.OverlapCircleAll
+            (v_muzzleTrs.position, PlayerManager.instance.markers[0].markerState.markerSearchRadious, UnitManager.Instance.unitLayer);
+        
+        // 검출된게 없으면 종료
+        if (_coll.Length <= 0) 
+            return;
+
         // 총알 발사 갯수 만큼 
         for (int i = 0; i < _bulletSate.bulletCount; i++)
         {
-            //##TODO : 여기서 오류남 null 
-
-            /*
-            // unit만 콜라이더 검사 
-            Collider2D[] _coll = Physics2D.OverlapCircleAll
-                (v_muzzleTrs.position, PlayerManager.instance.markers[0].markerState.markerSearchRadious, UnitManager.Instance.unitLayer);
-
-            // 검출된게 없으면 continuew
-            if (_coll.Length <= 0)
-                continue;
-
             // 검출된게 있음 도착지 설정
             _destination = _coll[0].transform;
 
@@ -87,7 +85,7 @@ public class MarkerBulletController : MonoBehaviour
 
             // bullet에 도착지 정해주기
             _bullet.GetComponent<BasicBullet>().bulletDestination = _destination;
-            */
+            
 
         }
 

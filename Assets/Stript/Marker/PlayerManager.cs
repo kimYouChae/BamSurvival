@@ -92,7 +92,9 @@ public class PlayerManager : MonoBehaviour
 
         for(int i = 0; i < _markers.Count; i++) 
         {
-            _markers[i].markerState.F_SetMarkerState(10f, 10f, 1f, 5f, 5f, 5f);
+            _markers[i].markerState.F_SetMarkerState(10f, 10f, 1f, 2f, 2f, 7f);
+
+            // hp , maxHp, speed , ½¯µå ÄðÅ¸ÀÓ, ÃÑ ÄðÅ¸ÀÓ, unit °¨Áö ¹üÀ§ 
         }
     }
 
