@@ -101,6 +101,11 @@ public class PlayerManager : MonoBehaviour
     // skillcard의 효과 적용
     public void F_ApplyCardEffect(SkillCard v_Card ) 
     {
+        // skillcard 의 effect 추가 
         v_Card.F_SkillcardEffect();
+    
+        // marker ui 업데이트 
+        UIManager.Instance.F_UpdateMarkerStateText();
+
     }
 }
