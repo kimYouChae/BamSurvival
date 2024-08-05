@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class BasicBullet : MonoBehaviour
 {
+    [Header("Bullet Field")]
     [SerializeField]
-    private Transform _bulletDestination;
+    private Transform _bulletDestination;   // bullet µµÂøÁö
+    private int _currBounceCount;           // ÃÜ±ä ÃÑ¾Ë 
 
     // ÇÁ·ÎÆÛÆ¼
     public Transform bulletDestination { get => _bulletDestination; set { _bulletDestination = value; } }

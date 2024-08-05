@@ -40,11 +40,11 @@ public class CardSelectUI : MonoBehaviour
     // 카드 ui On  
     private void F_ShowCard()
     {
-        // ui on 
-        _cardSelectUi.SetActive(true);
-
         // idx 초기화
         _currCardIndex = -1;
+
+        // ui on 
+        _cardSelectUi.SetActive(true);
 
         // 최종 선택된 card List 받아오기 
         _finalSelectCard = SkillCardManager.instance.F_FinalSelectCard();
@@ -92,6 +92,9 @@ public class CardSelectUI : MonoBehaviour
         // 현재 인덱스 != 클릭인텍스 => 해당 skillcard의 효과 적용 
         else 
         {
+            // 커졌던 카드 되돌려놓기
+            _cardList[_currCardIndex].GetComponent<RectTransform>().sizeDelta = new Vector2(300, 500);
+
             // ui on 
             _cardSelectUi.SetActive(false);
 
