@@ -23,7 +23,7 @@ public class Unit : MonoBehaviour
     /// </summary>
 
     [Header("===Uint State===")]
-    [SerializeField] protected int   _unitHp;           // hp
+    [SerializeField] protected float   _unitHp;           // hp
     [SerializeField] protected float _unitSpeed;        // speed 
     [SerializeField] protected float _unitAttackTime;   // 공격 지속시간
     [SerializeField] protected float _unitTimeStamp;   // 공격 시 0으로 초기화                                                 
@@ -134,87 +134,14 @@ public class Unit : MonoBehaviour
        
     }
 
-    // ## TODO : line 생성은 player가 할 예정 (아직 몬스터느 생각없음 ) , 임시로 몬스에서 생성 
-    public void F_DangerMarkerShoot(Unit v_unit) 
-    {
-        Transform _unitTrs = v_unit.gameObject.transform;
-
-        // 라인 생성 위치 
-        Vector3 _linePosition = new Vector3(_unitTrs.position.x , _unitTrs.position.y , -0.1f);
-        
-        // Raycast
-        RaycastHit2D _hit
-            = Physics2D.Raycast(_unitTrs.position, _unitTrs.up * 30, 30f , _hitWallLayerMask);
-        if (_hit.collider != null )
-        {
-            GameObject _dangerLineClone = Instantiate(_dangerLine, _linePosition, Quaternion.identity);
-            _dangerLineClone.GetComponent<DamgerLine>().EndPosition = _hit.transform.position;
-        }
-        else
-            Debug.LogError("없음 ");
-
-    }
-
-    // ## TODO : Line 그리는게 두개까지 밖에 안 됨, 위치값 다시 봐야할 듯 
-    public void F_DangerLineBounce(Unit v_unit)
-    {
-        Transform _unitTrs = v_unit.gameObject.transform;
-
-        // 라인생성 위치 
-        Vector3 _linePosition = new Vector3(_unitTrs.position.x, _unitTrs.position.y, -0.1f);
-        // 라인 방향 (방향벡터)
-        Vector3 _lineDir = PlayerManager.instance.markerHeadTrasform.position 
-            - _unitTrs.position;
-
-        LineRenderer _bounceLineInstance = Instantiate(_dangerBounceLine , _unitTrs.position , Quaternion.identity);
-
-        _bounceLineInstance.positionCount = 1;                    // 연결할 점의 갯수 ?
-        _bounceLineInstance.SetPosition(0, _unitTrs.position);    // 인덱스 0번에 있는 위치값 세팅   
-
-        // N번 bounce
-        for (int i = 1; i < 4; i++)
-        {
-            // Raycast
-            RaycastHit2D _hit
-                = Physics2D.Raycast(_linePosition, _lineDir * 100, 100f, _hitWallLayerMask);
-
-            _bounceLineInstance.positionCount++;
-            _bounceLineInstance.SetPosition(i, _hit.point);
-
-            // 시작 위치 수정 
-            _linePosition = _hit.point;
-            // 라인 방향 수정 : 입사각 반사각 구하기 
-            _lineDir = Vector3.Reflect( _lineDir , _hit.normal);
-        }
-    }
-
-    public void F_StartCorutine(Unit v_unit) 
-    {
-        StopAllCoroutines();
-        StartCoroutine(F_DangerLineAndShoot(v_unit));
-    }
-
-    IEnumerator F_DangerLineAndShoot( Unit _unit ) 
-    {
-        Debug.Log("코루틴 시작");
-        // 데미지 들어가는 line renderer 그리기
-        LineRenderer _temp = Instantiate(_dangerBounceLine, _unit.gameObject.transform);
-
-        _temp.positionCount = 2;
-        _temp.SetPosition(0, _unit.transform.position);     // 첫번째 위치 : unity
-        _temp.SetPosition(1, PlayerManager.instance.markerHeadTrasform.position);  // 두번째 위치 :  플레이어 위치  
-
-        // width 줄어드는 애니메이션 실행
-        _temp.GetComponent<Animator>().SetBool("isActive", true);
-
-        // 애니메이션이 0.6초 
-        yield return new WaitForSeconds(2.5f);
-        Destroy(_temp.gameObject);
-
-    }
-
     public void F_DrawLine() 
     {
         Debug.DrawRay(gameObject.transform.position , transform.up * 30f , Color.red);
+    }
+
+    public void F_GetDamage(float v_damage) 
+    {
+        // damage만큼 hp 감소
+        _unitHp -= v_damage;
     }
 }
