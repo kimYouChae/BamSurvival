@@ -9,6 +9,7 @@ public class Rare_PoisionBullet : SkillCard
         Debug.Log(this.cardName);
 
         // 총알 폭발 시 사거리 안에 있는 unit에게 독 효과 
+        // markerExplosion 의 함수를 호출하면 편할듯? 여기서 굳이 작성안해도 ?
     }
 }
 public class Rare_RapidBarier : SkillCard

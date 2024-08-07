@@ -62,9 +62,6 @@ public class BasicBullet : MonoBehaviour
                 Destroy(gameObject, 0.1f);
             }
         }
-
-
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -73,7 +70,10 @@ public class BasicBullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Unit"))
         {
             Debug.Log("Unit이랑 충돌함");
+
             // ##TODO : markerBulletExplosion의 함수실행 
+            PlayerManager.instance.markerExplosionConteroller.F_BulletExplosionStart(collision.gameObject);
+
             Destroy(gameObject, 0.1f);
         }
 
@@ -102,10 +102,6 @@ public class BasicBullet : MonoBehaviour
             Vector2 newVelocity = Vector2.Reflect(inDirection, inNormal);   // 반사각구하기
 
             _bulletRidigBody.velocity = newVelocity * _bulletState.bulletSpeed;     // 구한반사각으로 velocity 주가
-
-            Debug.Log("입력벡터 + " + inDirection);
-            Debug.Log("충돌체 노말벡터 + " + inNormal);
-            Debug.Log("새로운속도 + " + newVelocity);
 
             // 튕김 횟수 +1
             _currBounceCount++;
