@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 // bullet state
@@ -27,6 +28,15 @@ public class BulletSate
         this._bulletDamage = v_damage;
         this._bulletSize = v_size;
         this._bulletBounceCount = _cnt;
+    }
+
+    public BulletSate(BulletSate v_state) 
+    {
+        this._bulletCount = v_state._bulletCount;
+        this._bulletSpeed = v_state._bulletSpeed;
+        this._bulletDamage = v_state._bulletDamage;
+        this._bulletSize = v_state._bulletSize;
+        this._bulletBounceCount = v_state._bulletBounceCount;
     }
 }
 
@@ -84,8 +94,11 @@ public class MarkerBulletController : MonoBehaviour
             GameObject _bullet = Instantiate(_basicBulletObject, v_muzzleTrs.position, Quaternion.identity);
 
             // bullet에 도착지 정해주기
+            // ##TODO : bullet 총알 상속으로 구조 바꾸기 지금은 basic으로 
+            BulletSate _newState = new BulletSate(_bulletSate); // 복사본 만들어서 넣기
             _bullet.GetComponent<BasicBullet>().bulletDestination = _destination;
-            
+            _bullet.GetComponent<BasicBullet>().bulletState = _newState;
+            _bullet.GetComponent<BasicBullet>().bulletStartPosition = v_muzzleTrs.position;
         }
 
     }
